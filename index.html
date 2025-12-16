@@ -40,64 +40,58 @@
     </div>
 
     <div id="userModal"
-        class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+        class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
         <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">Thêm User Mới</h3>
-
                 <form id="addUserForm" class="mt-4 text-left">
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
                         <input type="text" id="name"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <p id="error-name" class="text-red-500 text-xs italic hidden">Vui lòng nhập tên.</p>
+                        <p id="error-name" class="error-msg text-red-500 text-xs italic hidden">Vui lòng nhập tên.</p>
                     </div>
-
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
                         <input type="text" id="username"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <p id="error-username" class="text-red-500 text-xs italic hidden">Vui lòng nhập username.</p>
+                        <p id="error-username" class="error-msg text-red-500 text-xs italic hidden">Vui lòng nhập
+                            username.</p>
                     </div>
-
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
                         <input type="text" id="email"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <p id="error-email" class="text-red-500 text-xs italic hidden">Email không hợp lệ.</p>
+                        <p id="error-email" class="error-msg text-red-500 text-xs italic hidden">Email không hợp lệ.</p>
                     </div>
-
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Phone</label>
                         <input type="text" id="phone"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <p id="error-phone" class="text-red-500 text-xs italic hidden">Vui lòng nhập số điện thoại.</p>
+                        <p id="error-phone" class="error-msg text-red-500 text-xs italic hidden">Vui lòng nhập số điện
+                            thoại.</p>
                     </div>
-
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Website</label>
                         <input type="text" id="website"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <p id="error-website" class="text-red-500 text-xs italic hidden">Vui lòng nhập website.</p>
+                        <p id="error-website" class="error-msg text-red-500 text-xs italic hidden">Vui lòng nhập
+                            website.</p>
                     </div>
 
                     <div class="flex items-center justify-end mt-6">
                         <button type="button" onclick="closeModal()"
-                            class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2 focus:outline-none focus:shadow-outline">
-                            Hủy
-                        </button>
+                            class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2 transition">Hủy</button>
                         <button type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Add User
-                        </button>
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">Add
+                            User</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script type="module" src="main.js"></script>
-    <script type="module" src="form.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
