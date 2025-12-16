@@ -1,20 +1,16 @@
 import { api } from './api.js';
 import { validateInput } from './validate.js';
 
-// --- DOM Elements ---
 const tableBody = document.getElementById('userTableBody');
 const modal = document.getElementById('userModal');
 const form = document.getElementById('addUserForm');
 const modalTitle = document.querySelector('#userModal h3');
 const submitBtn = document.querySelector('#addUserForm button[type="submit"]');
 
-// --- State ---
 let isEditingId = null;
 
-// --- Initialize ---
 document.addEventListener('DOMContentLoaded', loadUsers);
 
-// --- Functions ---
 async function loadUsers() {
     try {
         tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Đang tải...</td></tr>';
@@ -53,22 +49,18 @@ function renderTable(users) {
     `).join('');
 }
 
-// --- Event Delegation (Xử lý Edit/Delete) ---
 tableBody.addEventListener('click', async (e) => {
-    // Xử lý nút Edit
     if (e.target.classList.contains('btn-edit')) {
         const id = e.target.dataset.id;
         openModalForEdit(id);
     }
-    // Xử lý nút Delete
     if (e.target.classList.contains('btn-delete')) {
         const id = e.target.dataset.id;
         handleDelete(id);
     }
 });
 
-// --- Modal & Form Logic ---
-window.openModal = () => { // Giữ lại window.openModal vì button "Add User" ở HTML gọi nó
+window.openModal = () => { 
     isEditingId = null;
     form.reset();
     resetValidationUI();
@@ -84,7 +76,6 @@ window.closeModal = () => {
 async function openModalForEdit(id) {
     try {
         const user = await api.getOne(id);
-        // Fill data
         ['name', 'username', 'email', 'phone', 'website'].forEach(key => {
             document.getElementById(key).value = user[key];
         });
@@ -104,14 +95,13 @@ async function handleDelete(id) {
         try {
             await api.delete(id);
             alert('Đã xóa thành công!');
-            loadUsers(); // Reload lại bảng
+            loadUsers();
         } catch (error) {
             alert('Xóa thất bại');
         }
     }
 }
 
-// --- Form Submission ---
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -123,9 +113,8 @@ form.addEventListener('submit', async (e) => {
         website: document.getElementById('website').value,
     };
 
-    // Validation
     const { isValid, errors } = validateInput(formData);
-    resetValidationUI(); // Xóa lỗi cũ
+    resetValidationUI();
 
     if (!isValid) {
         showValidationErrors(errors);
@@ -147,7 +136,6 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// --- UI Helper Functions ---
 function resetValidationUI() {
     document.querySelectorAll('.error-msg').forEach(el => el.classList.add('hidden'));
     document.querySelectorAll('input').forEach(el => el.classList.remove('border-red-500'));

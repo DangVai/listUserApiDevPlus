@@ -3,6 +3,7 @@ const ORIGINAL_USERS_KEY = 'originalUsers';
 const ADDED_USERS_KEY = 'addedUsers';
 
 export const api = {
+    
     getAll: async () => {
         let originalUsers = JSON.parse(localStorage.getItem(ORIGINAL_USERS_KEY));
         if (!originalUsers || originalUsers.length === 0) {
@@ -13,10 +14,12 @@ export const api = {
         const addedUsers = JSON.parse(localStorage.getItem(ADDED_USERS_KEY)) || [];
         return [...originalUsers, ...addedUsers];
     },
+
     getOne: async (id) => {
         const users = await api.getAll();
         return users.find(user => user.id == id);
     },
+
     create: async (data) => {
         const addedUsers = JSON.parse(localStorage.getItem(ADDED_USERS_KEY)) || [];
         const allUsers = await api.getAll();
@@ -26,6 +29,7 @@ export const api = {
         localStorage.setItem(ADDED_USERS_KEY, JSON.stringify(addedUsers));
         return newUser;
     },
+
     update: async (id, data) => {
         const originalUsers = JSON.parse(localStorage.getItem(ORIGINAL_USERS_KEY)) || [];
         const addedUsers = JSON.parse(localStorage.getItem(ADDED_USERS_KEY)) || [];
@@ -46,6 +50,7 @@ export const api = {
         }
         throw new Error('User not found');
     },
+
     delete: async (id) => {
         const originalUsers = JSON.parse(localStorage.getItem(ORIGINAL_USERS_KEY)) || [];
         const addedUsers = JSON.parse(localStorage.getItem(ADDED_USERS_KEY)) || [];
